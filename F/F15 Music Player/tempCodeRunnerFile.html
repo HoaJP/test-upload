@@ -1,0 +1,9 @@
+playBtn.onclick = function(){
+                        if(audio.paused){
+                            audio.play()
+                            player.classList.add('playing')
+                        }else{
+                            audio.pause()
+                            player.classList.remove('playing')
+                        }
+                    }

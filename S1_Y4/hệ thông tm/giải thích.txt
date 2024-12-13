@@ -1,0 +1,12 @@
+RDR : tách từ
+
+forbert:
+
+bpe: đưa về mảng số để máy hiểu
+
+
+pad_sequence:
+
+epochs:
+
+AdamW

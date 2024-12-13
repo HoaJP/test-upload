@@ -1,0 +1,26 @@
+shopee:
+esp 	50
+mq2 	24
+adapter 	15
+còi 	3
+dây	15
+testboard	25
+-----------------------
+online : 	132
+cả ship :	142
+
+===============
+offline:
+module relay  	17
+quạt hút 220VAC  	53
+phích cắm		5
+nút 12*12*7	5
+đèn		5
+
+tổng offline :	85
+-----------------------------
+Tổng khoảng: 217 (online dự kiến + offline)
+=========================
+Tổng thực tế: 227 / 4 = 57.000đ / người
+
+

@@ -1,0 +1,7 @@
+code chương trình cho hệ thống IOT cảnh báo rò rỉ khí gas dùng MQ2, ESP8266 sao cho: khi nồng độ khí gas vượt qua ngưỡng xác định thì đèn led sẽ sáng và loa sẽ kêu đồng thời khởi chạy quạt hút điều khiển qua Modul relay 5V 1 kênh mức HIGH/LOW cho đến khi nồng độ dưới mức ngưỡng.
+
+có thể code ra giao diện trang web html/css/js để hiển thị dữ liệu đo được và trạng thái hoạt động bật và tắt cảnh báo không
+
+có thể dùng expressJs/ NodeJs / MySQL/ SQL server để xử lý dữ liệu không, lưu lại lịch sử cảnh báo
+
+có cần sửa lại code arduino trước đó không

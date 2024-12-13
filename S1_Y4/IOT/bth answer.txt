@@ -1,0 +1,63 @@
+#define trigger 2               // chân trig của US-015
+#define echo 4                  // chân echo của US-015
+float time_go=0, distance=0;
+
+void setup() {
+  pinMode(trigger, OUTPUT);     // Đặt chân trigger là OUTPUT
+  pinMode(echo, INPUT);         // Đặt chân echo là INPUT
+  Serial.begin(115200);         // Khởi tạo cổng nối tiếp với tốc độ 115200 bps
+}
+
+void loop() {
+  digitalWrite(trigger, LOW);   // Đặt chân trigger xuống mức thấp
+  delayMicroseconds(2);         // Trễ 2 micro giây
+  digitalWrite(trigger, HIGH);  // Đặt chân trigger lên mức cao
+  delayMicroseconds(10);        // Trễ 10 micro giây
+  digitalWrite(trigger, LOW);   // Đặt chân trigger xuống mức thấp
+  delayMicroseconds(2);         // Trễ 2 micro giây
+
+  time_go = pulseIn(echo, HIGH); // Đo thời gian xung HIGH tại chân echo
+
+  // Tính khoảng cách dựa trên thời gian đo được
+  distance = time_go * 346.5 * 100 / 1000000 / 2;  
+  // Vận tốc sóng siêu âm khoảng 346.5 m/s, chia 2 vì sóng đi và về
+
+  Serial.print("Khoang Cach:  ");
+  Serial.print(distance);       // In khoảng cách đo được ra màn hình Serial
+  Serial.println("cm");         // Đơn vị là cm
+
+  delay(1000);                  // Trễ 1 giây trước khi đo lại
+}
+
+
+
+### Giải thích công thức tính khoảng cách
+
+Trong chương trình, công thức tính khoảng cách được viết như sau:
+
+```cpp
+distance = time_go * 346.5 * 100 / 1000000 / 2;
+```
+
+Để hiểu rõ hơn, chúng ta sẽ phân tích từng thành phần của công thức này:
+
+1. **`time_go`**: Đây là thời gian mà sóng siêu âm đi từ cảm biến đến vật cản và quay trở lại, được đo bằng micro giây (µs).
+
+2. **`346.5`**: Đây là vận tốc của sóng siêu âm trong không khí, đơn vị là mét trên giây (m/s). Vận tốc này có thể thay đổi tùy thuộc vào nhiệt độ và độ ẩm của không khí.
+
+3. **`100`**: Hệ số này được sử dụng để chuyển đổi đơn vị từ mét sang centimet (1 mét = 100 cm).
+
+4. **`1000000`**: Hệ số này chuyển đổi thời gian từ micro giây (µs) sang giây (s) (1 giây = 1,000,000 µs).
+
+5. **`/ 2`**: Chia cho 2 vì thời gian đo được là thời gian sóng siêu âm đi và về, nên cần chia đôi để có thời gian sóng đi một chiều.
+
+### Tại sao độ chính xác của cảm biến tùy thuộc vào việc hiệu chỉnh tốc độ sóng siêu âm?
+
+Vận tốc của sóng siêu âm trong không khí không phải là một hằng số cố định mà có thể thay đổi dựa trên các yếu tố môi trường như nhiệt độ, độ ẩm, và áp suất không khí. Ví dụ:
+
+- **Nhiệt độ**: Vận tốc sóng siêu âm tăng khi nhiệt độ tăng. Ở 20°C, vận tốc sóng siêu âm là khoảng 343 m/s, nhưng ở 25°C, vận tốc này có thể tăng lên khoảng 346 m/s.
+- **Độ ẩm**: Độ ẩm cao hơn cũng làm tăng vận tốc sóng siêu âm.
+
+Nếu không hiệu chỉnh vận tốc sóng siêu âm theo điều kiện môi trường hiện tại, kết quả đo khoảng cách có thể không chính xác. Ví dụ, nếu chương trình sử dụng vận tốc 346.5 m/s nhưng nhiệt độ thực tế là 20°C (vận tốc khoảng 343 m/s), thì khoảng cách đo được sẽ bị sai lệch.
+
+Do đó, để đảm bảo độ chính xác cao nhất, cần phải hiệu chỉnh vận tốc sóng siêu âm dựa trên điều kiện môi trường thực tế tại thời điểm đo. Điều này có thể được thực hiện bằng cách sử dụng các cảm biến nhiệt độ và độ ẩm để điều chỉnh vận tốc sóng siêu âm trong công thức tính toán.

@@ -1,0 +1,8 @@
+1. bđ lớp, phân tích nhóm "Customer"
+2. Bđ lớp thiết kế
+3. package_layer
+4. Sinh code từ thiết kế
+    // Spring
+   // Smartphone, Paypal
+   // Search
+5. Code - chụp ảnh

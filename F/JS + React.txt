@@ -1,0 +1,9 @@
+=================JS=================
+1. Spead: khi truyền đối số
+2. Rest: kết hợp với destruturing để định nghĩa ra biến
+
+
+=================React===============
+1. React.createElement(type, props, children, n)
+
+2. useState hook
